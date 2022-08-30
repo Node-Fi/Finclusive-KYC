@@ -404,14 +404,18 @@
 
     <script>
       (function () {
-        if (window.NAME) {
-          const [first, last] = window.NAME.split(" , ");
-          document.getElementById("FirstName").value = first;
-          document.getElementById("LastName").value = last;
+        if (window.FIRST_NAME) {
+          document.getElementById("FirstName").value = window.FIRST_NAME;
+        }
+
+        if (window.LAST_NAME) {
+          document.getElementById("LastName").value = window.LAST_NAME;
         }
 
         document.getElementById("WalletAddress").value = window.WALLET_ADDRESS;
         document.getElementById("API_KEY").value = window.FINCLUSIVE_API_KEY;
+
+        window.alert(window);
         let isSubmitting = false;
         const identificationDocumentEl = document.getElementById(
           "identification-document"
