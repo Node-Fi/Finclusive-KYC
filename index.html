@@ -25,12 +25,12 @@
 
         <label>
           First Name *
-          <input type="text" name="FirstName" />
+          <input type="text" name="FirstName" id="FirstName" />
         </label>
 
         <label>
           Last Name *
-          <input type="text" name="LastName" />
+          <input type="text" name="LastName" id="LastName" />
         </label>
 
         <label>
@@ -38,15 +38,19 @@
           <input type="date" name="DateOfBirth" />
         </label>
 
-        <!-- <label>
-          Nationality
+        <label>
+          Wallet Address
           <input
             type="hidden"
             name="CustomAttributes[0].Name"
-            value="Nationality"
+            value="WalletAddress"
           />
-          <input type="text" name="CustomAttributes[0].Value" />
-        </label> -->
+          <input
+            type="text"
+            name="CustomAttributes[0].Value"
+            id="WalletAddress"
+          />
+        </label>
 
         <label>
           Email Address
@@ -400,6 +404,13 @@
 
     <script>
       (function () {
+        if (window.NAME) {
+          const [first, last] = window.NAME.split(" ");
+          document.getElementById("FirstName").value = first;
+          document.getElementById("LastName").value = last;
+        }
+
+        document.getElementById("WalletAddress").value = window.WALLET_ADDRESS;
         document.getElementById("API_KEY").value = window.FINCLUSIVE_API_KEY;
         let isSubmitting = false;
         const identificationDocumentEl = document.getElementById(
@@ -458,8 +469,7 @@
 
             // remove Nationality from request if field not populated
             if (!requestBody.get("CustomAttributes[0].Value")) {
-              requestBody.delete("CustomAttributes[0].Name");
-              requestBody.delete("CustomAttributes[0].Value");
+              window.alert("Wallet Address required!");
             }
 
             // remove Identification document from request if field not populated
