@@ -15,6 +15,8 @@
   <body>
     <h4>Finclusive KYC</h4>
 
+    <div id="blurb"></div>
+
     <div id="FinClusiveUI">
       <form
         action="https://finccustomersstage-sandbox.azurewebsites.net/iframe/client/individual/form"
@@ -404,18 +406,24 @@
 
     <script>
       (function () {
-        if (window.FIRST_NAME) {
-          document.getElementById("FirstName").value = window.FIRST_NAME;
+        document.getElementById("blurb").textContent = JSON.stringify(
+          window.env,
+          undefined,
+          2
+        );
+        if (window.env?.FIRST_NAME) {
+          document.getElementById("FirstName").value = window.env.FIRST_NAME;
         }
 
-        if (window.LAST_NAME) {
-          document.getElementById("LastName").value = window.LAST_NAME;
+        if (window.env?.LAST_NAME) {
+          document.getElementById("LastName").value = window.env.LAST_NAME;
         }
 
-        document.getElementById("WalletAddress").value = window.WALLET_ADDRESS;
-        document.getElementById("API_KEY").value = window.FINCLUSIVE_API_KEY;
+        document.getElementById("WalletAddress").value =
+          window.env?.WALLET_ADDRESS;
+        document.getElementById("API_KEY").value =
+          window.env?.FINCLUSIVE_API_KEY;
 
-        window.alert(window);
         let isSubmitting = false;
         const identificationDocumentEl = document.getElementById(
           "identification-document"
