@@ -17,10 +17,6 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <!-- <h4>Finclusive KYC</h4> -->
-
-    <div id="blurb"></div>
-
     <div id="FinClusiveUI">
       <form
         action="https://finccustomersstage-sandbox.azurewebsites.net/iframe/client/individual/form"
@@ -402,19 +398,12 @@
           </label>
         </fieldset>
 
-        <button type="submit" id="FinClusiveFormSubmitButton">
-          Create Individual Client
-        </button>
+        <button type="submit" id="FinClusiveFormSubmitButton">Submit</button>
       </form>
     </div>
 
     <script>
       (function () {
-        document.getElementById("blurb").textContent = JSON.stringify(
-          window.env,
-          undefined,
-          2
-        );
         if (window.env?.FIRST_NAME) {
           document.getElementById("FirstName").value = window.env.FIRST_NAME;
         }
